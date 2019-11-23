@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+   
+    <img src="pic_bulboff.gif" id='lamp' width="100" height="200" >
+    <p id="elamp" style="margin-left: 1px;"></p>
+
+
+    <button id='switchbutton' onclick="Swich()">SwitchButton
+    
+    </button>
+    <p id="sw" style="margin-left: 1px;"></p>
+
+    <script>
+        class SwitchButton {
+            constructor() {
+                this.status = false;
+                this.lamp = ElectricLamp;
+            }
+
+            connectToLamp(ElectricLamp) {
+                this.lamp = ElectricLamp;
+            }
+
+            switchOff() {
+                this.lamp.status = false;
+                this.status = false;
+            }
+            switchON() {
+                this.lamp.status = true;
+                this.status = true;
+            }
+        }
+        class ElectricLamp {
+            constructor() {
+                this.status = false;
+            }
+
+            turnOff() {
+                this.status = false;
+            }
+            turnOn() {
+                this.status = true;
+            }
+
+        }
+        let button1 = new SwitchButton();
+        let ele1 = new ElectricLamp();
+        let b1 = document.getElementById('sw');
+        let l1 = document.getElementById('elamp');
+        l1.innerHTML = 'Electriclamp: ' + ele1.status;
+        b1.innerHTML = 'Swich: ' + button1.status;
+        let image = document.getElementById("lamp");
+        function Swich() {
+            button1.connectToLamp(ele1);
+            if (ele1.status == false) {
+                button1.switchON();
+                l1.innerHTML = 'Electriclamp: ' + ele1.status;
+                b1.innerHTML = 'Swich: ' + button1.status;
+                image.src = "pic_bulbon.gif"
+            }
+            else if (ele1.status == true) {
+                button1.switchOff();
+                l1.innerHTML = 'Electriclamp: ' + ele1.status;
+                b1.innerHTML = 'Swich: ' + button1.status;
+                image.src = "pic_bulboff.gif"
+            }
+        }
+
+
+    // button1.connectToLamp(ele1);
+    // button1.switchOff();
+    // console.log(ele1.status);
+    </script>
+</body>
+
+</html>
